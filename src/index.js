@@ -6,7 +6,7 @@ import React from "react";
 import ReactDom from "react-dom";
 import Chat from "./component/chat";
 
-// <div id="div_chat"></div>のことです
+// index.htmlの<div id="div_chat"></div>のことです
 const div_chat = document.getElementById("div_chat");
 if (div_chat) {
     /**

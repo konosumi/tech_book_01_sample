@@ -42,7 +42,7 @@ class ChatSend extends React.Component {
         if (this.state.message.length > 0) {
            /**
             * https://firebase.google.com/docs/database/admin/save-data
-            * Realtime Dabase への発言の書き込みです
+            * Realtime Database への発言の書き込みです
             *
             * chat_messagesをリストとし、そこに発言内容を記録していきます。
             * 最終的に、Firebaseには以下のように保存されます
@@ -62,7 +62,7 @@ class ChatSend extends React.Component {
     render() {
         /**
          * クリックやフォームの値の変更にイベントを設定している以外は、何の変哲もない送信フォームです
-         * this を崩さないようにするために、あえてアロー関数形式でイベントを起動しています
+         * thisを崩さないようにするために、あえてアロー関数形式でイベントを起動しています
          *
          * ES6時代のNode.js(arrow functionを使おう)
          * SEE: https://techblog.yahoo.co.jp/javascript/nodejs/Node-es6/

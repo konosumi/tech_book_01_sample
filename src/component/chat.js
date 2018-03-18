@@ -13,7 +13,7 @@ class Chat extends React.Component {
 
         // 初期状態では読み込み中というチャットメッセージを差し込んでおきます
         this.state = {
-            // 理想を言うと、個々のチャットメッセージはモデルクラス化した方が良いです
+            // 発展系の理想を言うと、個々のチャットメッセージはモデルクラス化した方が良いです
             "chat_messages": [{
                 "name": "読み込み中",
                 "message": "チャットを読み込んでいます"
@@ -22,7 +22,8 @@ class Chat extends React.Component {
     }
 
     componentWillMount() {
-        // Firebase の初期化です
+        // Firebaseの初期化です
+        // webpackのdefineプラグインで定義した接続設定を利用します
         Firebase.initializeApp(FIREBASE_CONFIG);
 
         /**
@@ -36,7 +37,7 @@ class Chat extends React.Component {
         Firebase.auth().signInAnonymously().then(() => {
             console.log('Anonymous auth success');
 
-            // Realtimte Databaseのchat_messages を監視して、変更検知で発火します。
+            // Realtimte Databaseのchat_messagesを監視して、変更検知で発火します。
             // SEE: https://firebase.google.com/docs/database/web/read-and-write
             Firebase.database().ref('/chat_messages').on('value', (snapshot) => {
                 const chatMessages = snapshot.val();
