@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="content-language" content="ja">
+    <meta charset="UTF-8">
+    <title>Firebase と React.jsを使ったサンプルチャット</title>
+</head>
+<body bgcolor="#eeeeee">
+    <p>Firebase と Reac.js を使ったチャットシステムです</p>
+
+    <!-- index.jsによって、中身は差し替えられます -->
+    <div id="div_chat"></div>
+
+    <!--
+      webpackでバンドルしたJSファイルをロードします
+      ブラウザキャッシュが効いている場合は、v=などの追加パラメータを活用してください
+      SEE: https://donow.jp/skillup/?p=2471
+    -->
+    <script src="./js/bundle/index.js?v=0"></script>
+</body>
+</html>

@@ -1,0 +1,17 @@
+{
+  "rules": {
+    ".read": "auth != null",
+    ".write": "auth != null",
+    "chat_messages": {
+      "$chat_list_id": {
+        ".validate": "newData.hasChildren(['name','message'])",
+         "name": {
+           ".validate": "newData.isString() && newData.val().length > 1 && newData.val().length < 100"
+         },
+         "message": {
+           ".validate": "newData.isString() && newData.val().length > 1 && newData.val().length < 200"
+         }
+      }
+    }
+  }
+}

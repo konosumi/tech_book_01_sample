@@ -1,0 +1,28 @@
+{
+    "name": "FirebaseReactSample",
+    "description": "Firebase React Sample program.",
+    "version": "0.0.1",
+    "license": "ISC",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/konosumi/techbook01_firebase_react_sample.git"
+    },
+    "scripts": {
+        "build-dev": "./node_modules/.bin/webpack --colors --config webpack.config.dev.js",
+        "build-prod": "./node_modules/.bin/webpack --colors --config webpack.config.prod.js"
+    },
+    "dependencies": {
+        "react": "16.2.0",
+        "react-dom": "16.2.0",
+        "firebase": "4.10.1"
+    },
+    "devDependencies": {
+        "babel-core": "6.26.0",
+        "babel-loader": "7.1.2",
+        "babel-preset-env": "1.6.1",
+        "babel-preset-react": "6.24.1",
+        "node-static": "0.7.10",
+        "source-map": "0.7.1",
+        "webpack": "3.11.0"
+    }
+}
