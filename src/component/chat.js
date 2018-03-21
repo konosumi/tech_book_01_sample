@@ -22,48 +22,27 @@ class Chat extends React.Component {
     }
 
     componentWillMount() {
-        // Firebaseの初期化です
-        // webpackのdefineプラグインで定義した接続設定を利用します
-        Firebase.initializeApp(FIREBASE_CONFIG);
+        // Reactの準備が整ったら、Realtime Database接続を開始します
+        // Realtimte Databaseのchat_messagesを監視して、変更検知で発火します
+        // SEE: https://firebase.google.com/docs/database/web/read-and-write
+        Firebase.database().ref('/chat_messages').on('value', (snapshot) => {
+            const chatMessages = snapshot.val();
 
-        /**
-         * 匿名認証を行ないます
-         * then の横は function() { ではなく () => { で記述する必要があります。
-         * これには、JavaScriptのthisにおける深い問題があります。
-         *
-         * 【JavaScript】アロー関数式を学ぶついでにthisも復習する話
-         * SEE: https://qiita.com/mejileben/items/69e5facdb60781927929
-         */
-        Firebase.auth().signInAnonymously().then(() => {
-            console.log('Anonymous auth success');
-
-            // Realtimte Databaseのchat_messagesを監視して、変更検知で発火します。
-            // SEE: https://firebase.google.com/docs/database/web/read-and-write
-            Firebase.database().ref('/chat_messages').on('value', (snapshot) => {
-                const chatMessages = snapshot.val();
-
-                /**
-                 * ReactComponentのstateを書き換えることで、Reactに再描画を促します
-                 * 
-                 * React.js コンポーネント入門（props/state）
-                 * SEE: https://qiita.com/KeitaMoromizato/items/0da6c8e4264b1f206451
-                 *
-                 */
-                this.setState((prevState, props) => {
-                    return {
-                        'chat_messages': chatMessages ? chatMessages : [{
-                            "name": "読み込み完了",
-                            "message": "まだ発言はありません"
-                        }]
-                    }
-                });
+            /**
+             * ReactComponentのstateを書き換えることで、Reactに再描画を促します
+             * 
+             * React.js コンポーネント入門（props/state）
+             * SEE: https://qiita.com/KeitaMoromizato/items/0da6c8e4264b1f206451
+             *
+             */
+            this.setState((prevState, props) => {
+                return {
+                    'chat_messages': chatMessages ? chatMessages : [{
+                        "name": "読み込み完了",
+                        "message": "まだ発言はありません"
+                    }]
+                }
             });
-        }).catch((error) => {
-            console.log('Anonymous auth error');
-
-            if (error) {
-                console.error(error);
-            }
         });
     }
 
