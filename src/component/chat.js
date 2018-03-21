@@ -26,6 +26,7 @@ class Chat extends React.Component {
         // Realtimte Databaseのchat_messagesを監視して、変更検知で発火します
         // SEE: https://firebase.google.com/docs/database/web/read-and-write
         Firebase.database().ref('/chat_messages').on('value', (snapshot) => {
+            // 発展系としては、チャットメッセージが壊れていないかをチェックしておいた方が良いです
             const chatMessages = snapshot.val();
 
             /**
@@ -63,7 +64,7 @@ class Chat extends React.Component {
                 <h3>チャットに書き込まれたメッセージの一覧です</h3>
             {/**
               * Object.valuesはIE11ではエラーになりますが、今回はコンパクトに書くために採用してます
-              * ここでの chat_keyは、-L6iyvIIJObhMrQfpUcU のような、push時に自動発行された値になります。
+              * ここでのchat_keyは、-L6iyvIIJObhMrQfpUcU のような、push時に自動発行された値になります。
               * 解説は送信フォーム側にも書いてありますので、chat-send.jsもご確認ください。
               *
               * なお、props(chat_message=)で、チャットメッセージクラスにチャット内容を渡しています。

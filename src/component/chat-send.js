@@ -37,7 +37,7 @@ class ChatSend extends React.Component {
         });
     }
 
-    // 発言をRealtime Databaseに登録します
+    // 発言内容をRealtime Databaseに送信(登録)します
     onClickSend(e) {
         if (this.state.message.length > 0) {
            /**
@@ -56,6 +56,15 @@ class ChatSend extends React.Component {
                name: this.state.name,
                message :this.state.message
            });
+
+           // 発言を送信したのでリセットします
+           // stateが変更されるので、送信フォームの発言内容が消去されますよ！
+           this.setState((prevState, props) => {
+                return {
+                    'name': prevState.name,
+                    'message': ''
+                }
+            });
         }
     }
 
@@ -64,6 +73,8 @@ class ChatSend extends React.Component {
          * クリックやフォームの値の変更にイベントを設定している以外は、何の変哲もない送信フォームです
          * thisを崩さないようにするために、あえてアロー関数形式でイベントを起動しています
          *
+         * 【JavaScript】アロー関数式を学ぶついでにthisも復習する話
+         * SEE: https://qiita.com/mejileben/items/69e5facdb60781927929
          * ES6時代のNode.js(arrow functionを使おう)
          * SEE: https://techblog.yahoo.co.jp/javascript/nodejs/Node-es6/
          */
@@ -75,13 +86,13 @@ class ChatSend extends React.Component {
                 <tr>
                     <th>● 発言者名</th>
                     <td>
-                        <input type="text" size="20" onChange={(e) => this.onChangeName(e)} />
+                        <input type="text" size="20" value={this.state.name} onChange={(e) => this.onChangeName(e)} />
                     </td>
                 </tr>
                 <tr>
                     <th>● 発言内容</th>
                     <td>
-                        <textarea rows="10" cols="100" onChange={(e) => this.onChangeMessage(e)}></textarea>
+                        <textarea rows="10" cols="100" value={this.state.message} onChange={(e) => this.onChangeMessage(e)}></textarea>
                     </td>
                 </tr>
                 </tbody>

@@ -4,6 +4,7 @@
  */
 import React from "react";
 import ReactDom from "react-dom";
+import Firebase from "firebase";
 import Chat from "./component/chat";
 
 // Firebaseの初期化です
@@ -12,7 +13,7 @@ Firebase.initializeApp(FIREBASE_CONFIG);
 
 /**
  * 匿名認証を行ないます
- * then の横は function() { ではなく () => { で記述する必要があります。
+ * then の横は function() { ではなく () => { で記述する事をオススメします。
  * これには、JavaScriptのthisにおける深い問題があります。
  *
  * 【JavaScript】アロー関数式を学ぶついでにthisも復習する話
