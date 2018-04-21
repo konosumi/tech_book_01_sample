@@ -15,3 +15,6 @@ chat-message.jsは、チャットのメッセージ用のReactコンポーネン
 
 ## src/component/chat-send.js
 chat-send.jsは、チャット送信用のReactコンポーネントです。
+
+## src/component/chat.js
+chat.jsは、各種コンポーネントを束ねるチャットの本体クラスです。
