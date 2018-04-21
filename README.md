@@ -9,3 +9,6 @@ doc ディレクトリの下には、Realtime Database にセットするルー�
 
 ## public/index.html
 index.htmlはHTMLファイルです。ほぼJSを呼ぶためだけの役割です。
+
+## src/component/chat-message.js
+chat-message.jsは、チャットのメッセージ用のコンポーネントです。
